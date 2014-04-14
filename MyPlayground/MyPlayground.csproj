@@ -630,6 +630,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-3.1.0.debug.js" />
+    <Content Include="Scripts\knockout-3.1.0.js" />
     <Content Include="Scripts\less-1.4.1.min.js" />
     <Content Include="Scripts\markdown.js" />
     <Content Include="Scripts\MarkdownDeep License.txt" />
