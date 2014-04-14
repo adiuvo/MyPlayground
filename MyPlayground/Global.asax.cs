@@ -14,8 +14,6 @@ namespace MyPlayground
 
     using MyPlayground.Plumbing.Factories;
 
-
- 
     public class MvcApplication : System.Web.HttpApplication
     {
 
@@ -37,6 +35,7 @@ namespace MyPlayground
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             BootstrapEditorTemplatesConfig.RegisterBundles();
         }
+
         protected void Application_End()
         {
             container.Dispose();
