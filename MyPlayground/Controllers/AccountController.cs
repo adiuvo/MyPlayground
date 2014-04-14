@@ -12,9 +12,13 @@ using MyPlayground.Models;
 
 namespace MyPlayground.Controllers
 {
+    using Castle.Core.Logging;
+
     [Authorize]
     public class AccountController : Controller
     {
+        public ILogger Logger { get; set; }
+
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
