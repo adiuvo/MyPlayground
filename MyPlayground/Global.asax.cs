@@ -1,31 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
-using System.Web.Mvc;
-using System.Web.Optimization;
-using System.Web.Routing;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Global.asax.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   TODO The mvc application.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace MyPlayground
 {
+    using System.Web;
+    using System.Web.Http;
+    using System.Web.Mvc;
+    using System.Web.Optimization;
+    using System.Web.Routing;
+
     using Castle.Windsor;
     using Castle.Windsor.Installer;
 
     using MyPlayground.Plumbing.Factories;
 
-    public class MvcApplication : System.Web.HttpApplication
+    /// <summary>
+    /// TODO The mvc application.
+    /// </summary>
+    public class MvcApplication : HttpApplication
     {
+        #region Static Fields
 
+        /// <summary>
+        /// TODO The container.
+        /// </summary>
         private static IWindsorContainer container;
-        private static void BootstrapContainer()
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// TODO The application_ end.
+        /// </summary>
+        protected void Application_End()
         {
-            container = new WindsorContainer()
-                .Install(FromAssembly.This());
-            var controllerFactory = new WindsorControllerFactory(container.Kernel);
-            ControllerBuilder.Current.SetControllerFactory(controllerFactory);
+            container.Dispose();
         }
 
+        /// <summary>
+        /// TODO The application_ start.
+        /// </summary>
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -36,9 +57,16 @@ namespace MyPlayground
             BootstrapEditorTemplatesConfig.RegisterBundles();
         }
 
-        protected void Application_End()
+        /// <summary>
+        /// TODO The bootstrap container.
+        /// </summary>
+        private static void BootstrapContainer()
         {
-            container.Dispose();
+            container = new WindsorContainer().Install(FromAssembly.This());
+            var controllerFactory = new WindsorControllerFactory(container.Kernel);
+            ControllerBuilder.Current.SetControllerFactory(controllerFactory);
         }
+
+        #endregion
     }
 }
