@@ -14,6 +14,7 @@ namespace MyPlayground.Controllers
 {
     using Castle.Core.Logging;
 
+
     [Authorize]
     public class AccountController : Controller
     {

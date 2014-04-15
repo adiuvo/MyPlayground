@@ -15,49 +15,35 @@ namespace MyPlayground.Plumbing.Interceptors
 
     public class LogAspect : IInterceptor
     {
-        public LogAspect(ILoggerFactory loggerFactory)
-        {
-            LoggerFactory = loggerFactory;
-            Loggers = new Dictionary<Type, ILogger>();
-        }
+        /// <summary>
+        /// Gets or sets a value indicating whether eat all.
+        /// </summary>
+        public bool EatAll { get; set; }
 
-        public ILoggerFactory LoggerFactory { get; set; }
+        public bool LoggingEnabled { get; set; }
 
-        public Dictionary<Type, ILogger> Loggers { get; set; }
-
-        private static string DumpObject(object argument)
-        {
-            Type objtype = argument.GetType();
-            if (objtype == typeof(String) || objtype.IsPrimitive || !objtype.IsClass)
-                return objtype.ToString();
-
-            DataContractSerializer s = new DataContractSerializer(objtype);
-            return s.ToString();
-        }
-
-        public static String CreateInvocationLogString(IInvocation invocation)
-        {
-            StringBuilder sb = new StringBuilder(100);
-            sb.AppendFormat("Called: {0}.{1}(", invocation.TargetType.Name, invocation.Method.Name);
-            foreach (object argument in invocation.Arguments)
-            {
-                String argumentDescription = argument == null ? "null" : DumpObject(argument);
-                sb.Append(argumentDescription).Append(",");
-            }
-            if (invocation.Arguments.Count() > 0) sb.Length--;
-            sb.Append(")");
-            return sb.ToString();
-        }
-
+        /// <summary>
+        /// The intercept.
+        /// </summary>
+        /// <param name="invocation">
+        /// The invocation.
+        /// </param>
         public void Intercept(IInvocation invocation)
         {
-            if (!Loggers.ContainsKey(invocation.TargetType))
+            try
             {
-                Loggers.Add(invocation.TargetType, LoggerFactory.Create(invocation.TargetType));
+                string.Format("Method Called -> {0}::{1}", invocation.TargetType.Name, invocation.Method.Name);
+                invocation.Proceed();
+                string.Format("Method returned -> {0}::{1}", invocation.TargetType.Name, invocation.Method.Name);
             }
-
-            ILogger logger = Loggers[invocation.TargetType];
-            if (logger.IsDebugEnabled) logger.Debug(CreateInvocationLogString(invocation));
+            catch (Exception e)
+            {
+                string.Format("{0} caught: {1}", e.GetType(), e.Message);
+                if (!this.EatAll)
+                {
+                    throw;
+                }
+            }
         }
     }
 }

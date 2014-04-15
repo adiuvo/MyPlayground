@@ -15,6 +15,8 @@ namespace MyPlayground
     using System.Web.Optimization;
     using System.Web.Routing;
 
+    using Castle.Facilities.Logging;
+    using Castle.MicroKernel.Registration;
     using Castle.Windsor;
     using Castle.Windsor.Installer;
 
@@ -55,6 +57,8 @@ namespace MyPlayground
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             BootstrapEditorTemplatesConfig.RegisterBundles();
+
+            BootstrapContainer();
         }
 
         /// <summary>
@@ -63,6 +67,12 @@ namespace MyPlayground
         private static void BootstrapContainer()
         {
             container = new WindsorContainer().Install(FromAssembly.This());
+            container.Register(Classes
+                .FromAssemblyInThisApplication()
+                .InNamespace("MyPlayground.Plumbing")
+                .WithServiceAllInterfaces()
+                .LifestyleTransient());
+
             var controllerFactory = new WindsorControllerFactory(container.Kernel);
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);
         }
