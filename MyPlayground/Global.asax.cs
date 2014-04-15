@@ -67,6 +67,7 @@ namespace MyPlayground
         private static void BootstrapContainer()
         {
             container = new WindsorContainer().Install(FromAssembly.This());
+
             container.Register(Classes
                 .FromAssemblyInThisApplication()
                 .InNamespace("MyPlayground.Plumbing")

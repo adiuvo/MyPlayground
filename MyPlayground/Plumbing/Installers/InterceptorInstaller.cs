@@ -36,7 +36,7 @@ namespace MyPlayground
             // Register the logger
             container.Register(
                 Component.For<LogAspect>()
-                    .DependsOn(Property.ForKey("LoggingEnabled").Equals("true"))
+                    .DependsOn(Property.ForKey("EatAll").Equals("true"))
                     .LifestyleTransient());
         }
 

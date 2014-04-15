@@ -6,8 +6,13 @@ using System.Web.Mvc;
 
 namespace MyPlayground.Controllers
 {
+    using Castle.Core.Logging;
+
     public class HomeController : Controller
     {
+
+        private ILogger logger;
+
         public ActionResult Index()
         {
             return View();
