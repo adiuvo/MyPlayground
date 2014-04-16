@@ -13,6 +13,7 @@ namespace MyPlayground.Plumbing.Interceptors
 
     using Castle.Core.Logging;
     using Castle.DynamicProxy;
+    using Castle.MicroKernel.Registration;
 
     /// <summary>
     /// TODO The exception aspect.
@@ -51,9 +52,13 @@ namespace MyPlayground.Plumbing.Interceptors
             {
                 this.Logger.Info(string.Format("{0} caught: {1}", e.GetType(), e.Message));
 
-                if (!this.EatAll)
+                if (Dependency.OnAppSettingsValue("HandleExceptions").Equals("false"))
                 {
                     throw;
+                }
+                else
+                {
+                    this.Logger.Info(string.Format("Redirecting to error page"));
                 }
             }
         }

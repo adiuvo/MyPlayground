@@ -36,13 +36,13 @@ namespace MyPlayground
             // Register the logger
             container.Register(
                 Component.For<LogAspect>()
-                    //.DependsOn(Property.ForKey("EatAll").Equals("true"))
+                    .DependsOn(Dependency.OnAppSettingsValue("EnableLogging").Equals("true"))
                     .LifestyleTransient());
 
             // Register the Exception handler
             container.Register(
                 Component.For<ExceptionAspect>()
-                .DependsOn(Property.ForKey("EatAll").Equals("true"))
+                .DependsOn(Dependency.OnAppSettingsValue("HandleExceptions").Equals("true"))
                     .LifestyleTransient());
 
             // Register the transaction handler
