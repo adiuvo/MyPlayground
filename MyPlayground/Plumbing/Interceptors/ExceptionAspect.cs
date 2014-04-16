@@ -6,7 +6,6 @@
 //   TODO The exception aspect.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace MyPlayground.Plumbing.Interceptors
 {
     using System;
@@ -16,19 +15,19 @@ namespace MyPlayground.Plumbing.Interceptors
     using Castle.MicroKernel.Registration;
 
     /// <summary>
-    /// TODO The exception aspect.
+    ///     TODO The exception aspect.
     /// </summary>
     public class ExceptionAspect : IInterceptor
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets a value indicating whether eat all.
+        ///     Gets or sets a value indicating whether eat all.
         /// </summary>
         public bool EatAll { get; set; }
 
         /// <summary>
-        /// Gets or sets the logger.
+        ///     Gets or sets the logger.
         /// </summary>
         public ILogger Logger { get; set; }
 
@@ -56,10 +55,8 @@ namespace MyPlayground.Plumbing.Interceptors
                 {
                     throw;
                 }
-                else
-                {
-                    this.Logger.Info(string.Format("Redirecting to error page"));
-                }
+
+                this.Logger.Info(string.Format("Redirecting to error page"));
             }
         }
 
