@@ -208,11 +208,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Patterns\Repository\EntityBase.cs" />
-    <Compile Include="Patterns\Repository\Interfaces\IDataContext.cs" />
-    <Compile Include="Patterns\Repository\Interfaces\IObjectState.cs" />
-    <Compile Include="Patterns\Repository\ObjectState.cs" />
-    <Compile Include="Patterns\Repository\StateHelper.cs" />
+    <Compile Include="Patterns\Repository\Infrastructure\EntityBase.cs" />
+    <Compile Include="Patterns\Repository\Infrastructure\IDataContext.cs" />
+    <Compile Include="Patterns\Repository\Infrastructure\IObjectState.cs" />
+    <Compile Include="Patterns\Repository\Infrastructure\ObjectState.cs" />
+    <Compile Include="Patterns\Repository\Repositories\IRepository.cs" />
+    <Compile Include="Patterns\Repository\Repositories\IRepositoryAsync.cs" />
+    <Compile Include="Patterns\Repository\Repositories\IRepositoryQuery.cs" />
+    <Compile Include="Patterns\Repository\Repositories\Repository.cs" />
+    <Compile Include="Patterns\Repository\Repositories\RepositoryQuery.cs" />
+    <Compile Include="Patterns\Repository\Infrastructure\StateHelper.cs" />
+    <Compile Include="Patterns\Repository\UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="Patterns\Repository\UnitOfWork\IUnitOfWorkAsync.cs" />
     <Compile Include="Plumbing\Installers\InterceptorInstaller.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
