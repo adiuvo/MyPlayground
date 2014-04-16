@@ -23,7 +23,8 @@ namespace MyPlayground.Plumbing.Selectors
             return new[]
                        {
                            InterceptorReference.ForType<LogAspect>(), 
-                           InterceptorReference.ForType<ExceptionAspect>()
+                           InterceptorReference.ForType<ExceptionAspect>(),
+                           InterceptorReference.ForType<TransactionAspect>()
                        };
         }
     }

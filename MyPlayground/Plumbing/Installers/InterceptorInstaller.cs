@@ -44,6 +44,11 @@ namespace MyPlayground
                 Component.For<ExceptionAspect>()
                 .DependsOn(Property.ForKey("EatAll").Equals("true"))
                     .LifestyleTransient());
+
+            // Register the transaction handler
+            container.Register(
+                Component.For<TransactionAspect>()
+                    .LifestyleTransient());
         }
 
         #endregion
