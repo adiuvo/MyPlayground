@@ -21,6 +21,7 @@ namespace MyPlayground
     using Castle.Windsor.Installer;
 
     using MyPlayground.Plumbing.Factories;
+    using MyPlayground.Plumbing.Interceptors;
 
     /// <summary>
     /// TODO The mvc application.

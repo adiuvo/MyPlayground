@@ -1,26 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Runtime.Serialization;
-using System.Xml.Schema;
-using System.Xml;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="LogAspect.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   TODO The log aspect.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace MyPlayground.Plumbing.Interceptors
 {
-    using System.Text;
-
     using Castle.Core.Logging;
     using Castle.DynamicProxy;
 
+    /// <summary>
+    /// TODO The log aspect.
+    /// </summary>
     public class LogAspect : IInterceptor
     {
-        /// <summary>
-        /// Gets or sets a value indicating whether eat all.
-        /// </summary>
-        public bool EatAll { get; set; }
+        #region Public Properties
 
+        /// <summary>
+        /// Gets or sets the logger.
+        /// </summary>
+        public ILogger Logger { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether logging enabled.
+        /// </summary>
         public bool LoggingEnabled { get; set; }
+
+        #endregion
+
+        #region Public Methods and Operators
 
         /// <summary>
         /// The intercept.
@@ -30,20 +41,19 @@ namespace MyPlayground.Plumbing.Interceptors
         /// </param>
         public void Intercept(IInvocation invocation)
         {
+            this.Logger.Info(
+                string.Format("Method Called -> {0}::{1}", invocation.TargetType.Name, invocation.Method.Name));
             try
             {
-                string.Format("Method Called -> {0}::{1}", invocation.TargetType.Name, invocation.Method.Name);
                 invocation.Proceed();
-                string.Format("Method returned -> {0}::{1}", invocation.TargetType.Name, invocation.Method.Name);
             }
-            catch (Exception e)
+            finally
             {
-                string.Format("{0} caught: {1}", e.GetType(), e.Message);
-                if (!this.EatAll)
-                {
-                    throw;
-                }
+                this.Logger.Info(
+                    string.Format("Method returned -> {0}::{1}", invocation.TargetType.Name, invocation.Method.Name));
             }
         }
+
+        #endregion
     }
 }
