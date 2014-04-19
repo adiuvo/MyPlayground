@@ -64,7 +64,7 @@ namespace MyPlayground.Plumbing.Interceptors
         /// </param>
         public void Intercept(IInvocation invocation)
         {
-            this.Logger.InfoFormat("{0}::{1}({2})", invocation.TargetType.Name, invocation.Method.Name, string.Join(", ", DumpObject(invocation.Arguments)));
+            this.Logger.InfoFormat("{0}::{1}({2})", invocation.TargetType.Name, invocation.Method.Name, string.Join(", ", invocation.Arguments));
 
             try
             {
