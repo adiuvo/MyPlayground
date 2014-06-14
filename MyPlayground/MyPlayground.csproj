@@ -207,12 +207,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\FishController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Fish.cs" />
     <Compile Include="Patterns\Repository\Infrastructure\EntityBase.cs" />
     <Compile Include="Patterns\Repository\Infrastructure\IDataContext.cs" />
     <Compile Include="Patterns\Repository\Infrastructure\IObjectState.cs" />
@@ -249,7 +247,11 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cover.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\smurf.png" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\themes\bootstrap\bootstrap.css" />
     <Content Include="Content\themes\bootstrap\bootstrap.min.css" />
     <Content Include="Content\themes\bootstrap\variables.css" />
